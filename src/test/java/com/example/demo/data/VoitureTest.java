@@ -1,5 +1,6 @@
 package com.example.demo.data;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.*;
@@ -8,33 +9,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class VoitureTest {
+    private Voiture voiture;
 
     @Test
     void creerVoiture(){
         assertEquals(1,1);
     }
 
-    @Test
-    void marque(){
-       Voiture voiture = new Voiture("BMW",10);
-        assertEquals("BMW",voiture.getMarque());
-    }
-
-    @Test
-    void Testprix(){
-       Voiture voiture = new Voiture("BMW",10);
-        assertEquals(10,voiture.getPrix());
+    @BeforeEach
+    void setUp() {
+         voiture = new Voiture("bmw", 10);
     }
     @Test
-    void TestId(){
-       Voiture voiture = new Voiture("BMW",10);
-        voiture.setId(1);
-        assertEquals(voiture.getId(), 1);
+    void  testMarque() {
+        assertEquals(voiture.getMarque(),"bmw", "la marque devrati etre bmw, erreur dans test");
     }
     @Test
-    void TestSetPrix(){
-       Voiture voiture = new Voiture("BMW",10);
-        voiture.setPrix(25);
-        assertEquals(25,voiture.getPrix());
+    void testPrix(){
+        assertEquals(voiture.getPrix(),10,"devrait etre 10,erreur prix");
+    }
+    @Test
+    void testSetId(){
+        voiture.setId(19);
+        assertEquals(voiture.getId(),19,"doit etre 19, test error");
     }
 }
